@@ -12,7 +12,7 @@ batch:
 artifacts:
   files:
     - '**/*'
-  base-directory: build
+  base-directory: dist
 cache:
   paths:
     - /tmp/node_modules.tar
