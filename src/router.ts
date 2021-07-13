@@ -2,7 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
     {
-        path: '/',
+        path: "/",
+        name: "Home",
+        component: ()=> import("@/components/05_Pages/HomePage.vue")
+    },
+    {
+        path: '/events',
         name: 'Index',
         component: () => import("@/components/05_Pages/IndexPage.vue")
     },

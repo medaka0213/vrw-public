@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 
 import PrimeVue from 'primevue/config';
+import 'primeflex/primeflex.css';
+
 
 createApp(App)
     .use(store)
