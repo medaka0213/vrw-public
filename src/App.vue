@@ -3,6 +3,7 @@
     <header>
       <ul>
         <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/events">Events</router-link></li>
       </ul>
     </header>
     <transition mode="out-in">

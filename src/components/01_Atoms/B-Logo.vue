@@ -1,10 +1,12 @@
 <template>
-    <SVGElement />
+<img
+    type=”image/svg+xml” 
+    src="/logo/VRWlogo_21-09-22_JP.svg"
+    alt="VRW-Logo"
+/>
 </template>
 
 <script>
-import SVGElement from "@/assets/VRWlogo_21-02-14_JP.svg"
-
 export default {
     name: "VRWLogo",
     props: {
@@ -12,8 +14,13 @@ export default {
             type: String,
         },
     },
-    components: {
-        SVGElement
-    },
 };
 </script>
+
+<style lang="scss" scoped>
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+</style>

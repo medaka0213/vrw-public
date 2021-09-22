@@ -1,5 +1,12 @@
 //vue.config.js
 module.exports = {
+    configureWebpack: {
+        devServer: {
+            watchOptions: {
+                poll: true
+            }
+        }
+    },
     chainWebpack: config => {
         const svgRule = config.module.rule('svg');
 

@@ -1,5 +1,5 @@
 <template>
-<div v-for="(item, key) in items" :key="key">
+<div v-for="(item, key) in items" :key="key" class="p-text-left">
     <EventListItem v-if="item.type !== 'launch'" :item="item"/>
     <LaunchListItem v-else :item="item"/>
 </div>
