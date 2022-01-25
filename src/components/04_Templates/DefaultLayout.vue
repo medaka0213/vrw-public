@@ -11,5 +11,6 @@ body {
 .page-content {
     max-width: 800px;
     background-color: #eee;
+    text-align: left;
 }
 </style>

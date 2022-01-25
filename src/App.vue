@@ -3,7 +3,7 @@
     <header>
       <ul>
         <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/events">Events</router-link></li>
+        <li><router-link to="/events">打ち上げ・イベント一覧</router-link></li>
       </ul>
     </header>
     <transition mode="out-in">
@@ -15,7 +15,7 @@
 <style scoped lang="scss">
 #app {
   header{
-    background : #777;
+    background : #004F8A;
       ul{
         margin: 0;
         padding: 0;
