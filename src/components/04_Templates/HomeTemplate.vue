@@ -12,10 +12,10 @@ DafaultLayout
         p
             | 最新の打ち上げ情報については、下記のリンクをご確認ください。
         p
-            span.p-mr-5
+            span.p-mr-3
                 a(href="/meetups")
                     | 集会一覧
-            span.p-mr-5
+            span.p-mr-3
                 a(href="/events")
                     | 打ち上げ・イベント一覧
 
