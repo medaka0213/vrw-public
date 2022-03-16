@@ -1,9 +1,11 @@
 <template>
-  <div id="app">
+  <div id="page-content">
     <header>
       <ul>
         <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/events">打ち上げ・イベント一覧</router-link></li>
+        <li><router-link to="/events">打ち上げ・イベント</router-link></li>
+        <li><router-link to="/meetups">集会</router-link></li>
+        <li><router-link to="/slides">スライド資料</router-link></li>
       </ul>
     </header>
     <transition mode="out-in">
