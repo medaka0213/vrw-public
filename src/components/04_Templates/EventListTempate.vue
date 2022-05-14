@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { get_events } from '@/actions/webapi'
+import { get_event } from '@/actions/webapi'
 import { defineComponent, reactive, computed, onMounted } from 'vue'
 
 import EventListBlock from "@/components/03_Organisms/EventListBlock"
@@ -26,7 +26,7 @@ export default defineComponent({
             loaded: false,
         })
         async function getItems(){
-            state.items = await get_events("upcoming")
+            state.items = await get_event("upcoming")
             state.loaded = true
         }
         onMounted(() => {

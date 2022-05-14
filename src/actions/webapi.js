@@ -1,6 +1,6 @@
 import axios from 'axios'
-import {sort_events} from "@/actions/sort.js"
 import {time_between} from "@/actions/time.js"
+import Models from '@/models/index'
 
 const ROOT_API_URL = "https://w2wmwyvb45.execute-api.ap-northeast-1.amazonaws.com/api"
 
@@ -12,10 +12,18 @@ export async function api_get(path=""){
     return result
 }
 
-export async function get_events(mode="upcoming"){
+export async function get_event(mode="upcoming"){
+    let datetimes = time_between(mode)
+    let result = await api_get(`/q/event?datetime=${datetimes[0]}...${datetimes[1]}`)
+    let items = result.data.Items
+    return items.map(item => new Models.Event(item))
+}
+
+export async function get_launch(mode="upcoming"){
     let datetimes = time_between(mode)
     let result = await api_get(`/q/launch?datetime=${datetimes[0]}...${datetimes[1]}`)
-    return result.data.Items
+    let items = result.data.Items
+    return items.map(item => new Models.Launch(item))
 }
 
 export async function get_meetups(mode="upcoming"){

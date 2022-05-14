@@ -1,5 +1,5 @@
 <template>
-<div class="page-content p-mx-auto p-my-5 p-text-center">
+<div class="page-content mx-auto my-5 text-center">
     <slot></slot>
 </div>
 </template>
@@ -9,7 +9,7 @@ body {
     background-color: #eee;
 }
 .page-content {
-    max-width: 800px;
+    max-width: 1200px;
     background-color: #eee;
     text-align: left;
 }

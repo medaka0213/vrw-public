@@ -1,8 +1,8 @@
 <template lang="pug">
 DafaultLayout
-    .p-p-5.p-my-5.page-item
+    .p-5.my-5.page-item
         VRWLogo
-    .p-p-5.p-my-5.page-item.p-text-left
+    .p-5.my-5.page-item.text-left
         h2
             |「ロケット打ち上げを観る集会」について
         p
@@ -12,13 +12,17 @@ DafaultLayout
         p
             | 最新の打ち上げ情報については、下記のリンクをご確認ください。
         p
-            span.p-mr-3
-                a(href="/meetups")
-                    | 集会一覧
-            span.p-mr-3
-                a(href="/events")
-                    | 打ち上げ・イベント一覧
-
+            //
+                span.mr-3
+                    a(href="/meetup")
+                        | 集会一覧
+            //
+            span.mr-3
+                a(href="/launch")
+                    | 打ち上げ一覧
+            span.mr-3
+                a(href="/event")
+                    | その他イベント一覧
 </template>
 
 <script>

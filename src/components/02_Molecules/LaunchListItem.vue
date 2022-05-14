@@ -1,16 +1,20 @@
 <template>
-    <div class="launch-item p-px-3 p-py-1 p-my-3">
-        <h2>{{item.rocket_JP || item.rocket}} | {{item.name_JP || item.name}}</h2>
-        <p>🗓️ {{item.datetime_time_type === "CONFIRMED"? "日本時間" : ""}} {{ item.datetime_format_JP  }}</p>
-        <p>🌍 {{ item.provider_JP || item.provider }}, {{ item.site_JP || item.site }}</p>
-        <p>💬 {{ item.overview_JP || item.overview }}</p>
+    <div class="launch-item px-3 py-1 my-1">
+        <h3>{{item.get_jp_value('name')}}</h3>
+        <p class="py-0 my-1 text-sm">🗓️ {{item.datetime_time_type === "CONFIRMED"? "日本時間" : ""}} {{ item.datetime_format_JP  }}</p>
+        <p class="py-0 my-1 text-sm" v-if="item.get_jp_value('rocket')">🚀 {{ item.get_jp_value('provider') }} | {{ item.get_jp_value('rocket') }}</p>
+        <p class="py-0 my-1 text-sm" v-if="item.get_jp_value('site')">🌍 {{ item.get_jp_value('site') }}</p>
+        <p class="py-0 my-1 text-sm" v-if="item.get_jp_value('overview')">💬 {{ item.get_jp_value('overview') }}</p>
+        <p class="py-0 my-1 text-xs">🔗 <a v-bind:href="item.nextSpaceFlightLink()" target="_blank">{{ item.nextSpaceFlightLink() }}</a></p>
     </div>
 </template>
 
 <script>
-export default {
+import { defineComponent, reactive, computed, onMounted } from 'vue'
+
+export default defineComponent({
     props: ["item"]
-}
+})
 </script>
 
 <style scoped>
