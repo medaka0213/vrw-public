@@ -9,7 +9,7 @@ const routes = [
     {
         path: '/events',
         name: 'Index',
-        component: () => import("@/components/05_Pages/IndexPage.vue")
+        component: () => import("@/components/05_Pages/EventListPage.vue")
     },
 ]
 

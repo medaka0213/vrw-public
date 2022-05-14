@@ -2,17 +2,19 @@
 
 ## Project setup
 ```
-npm install
+docker-compose up --build
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+docker-compose up
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build
+git checkout prod
+git merge main
+git push
 ```
 
 ### Customize configuration

@@ -24,10 +24,9 @@ export default defineComponent({
         const state = reactive({
             items:[],
             loaded: false,
-            result:computed(() => state.num * state.rates.JPY),
         })
         async function getItems(){
-            state.items = await get_events()
+            state.items = await get_events("upcoming")
             state.loaded = true
         }
         onMounted(() => {
