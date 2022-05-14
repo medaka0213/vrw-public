@@ -5,7 +5,7 @@
         <p class="py-0 my-1 text-sm" v-if="item.get_jp_value('rocket')">🚀 {{ item.get_jp_value('provider') }} | {{ item.get_jp_value('rocket') }}</p>
         <p class="py-0 my-1 text-sm" v-if="item.get_jp_value('site')">🌍 {{ item.get_jp_value('site') }}</p>
         <p class="py-0 my-1 text-sm" v-if="item.get_jp_value('overview')">💬 {{ item.get_jp_value('overview') }}</p>
-        <p class="py-0 my-1 text-xs">🔗 <a v-bind:href="item.nextSpaceFlightLink()" target="_blank">{{ item.nextSpaceFlightLink() }}</a></p>
+        <p class="py-0 my-1 text-xs">🔗 <a v-bind:href="item.nextSpaceFlightLink()" target="_blank">NextSpaceFlight.com</a></p>
     </div>
 </template>
 

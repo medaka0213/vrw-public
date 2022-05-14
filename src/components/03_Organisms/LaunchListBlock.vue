@@ -1,6 +1,6 @@
 <template lang="pug">
 .grid
-    div(v-for="(item, key) in items" :key="key" class="text-left m-2 col-12.md:col-6.lg:col-3")
+    div(v-for="(item, key) in items" :key="key" class="text-left col-12 md:col-6 lg:col-3")
         LaunchListItem(:item="item")
 </template>
 
