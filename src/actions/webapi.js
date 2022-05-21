@@ -2,7 +2,7 @@ import axios from 'axios'
 import {time_between} from "@/actions/time.js"
 import Models from '@/models/index'
 
-const ROOT_API_URL = "https://w2wmwyvb45.execute-api.ap-northeast-1.amazonaws.com/api"
+const ROOT_API_URL = "https://api.virtualrocketwatching.net/v0"
 
 export async function api_get(path=""){
     if(!path.startsWith("/") & !path.startsWith("\\")){
