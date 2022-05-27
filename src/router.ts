@@ -15,7 +15,13 @@ const routes = [
         path: '/launch',
         name: 'LaunchList',
         component: () => import("@/components/05_Pages/LaunchListPage.vue")
-    },]
+    },
+    {
+        path: '/q/:type/i/:pk',
+        name: 'EventDetail',
+        component: () => import("@/components/05_Pages/ItemDetailPage.vue")
+    }
+]
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),

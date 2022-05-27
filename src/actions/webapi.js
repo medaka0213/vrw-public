@@ -1,3 +1,4 @@
+/* eslint-disable */
 import axios from 'axios'
 import {time_between} from "@/actions/time.js"
 import Models from '@/models/index'
@@ -35,4 +36,58 @@ export async function get_meetups(mode="upcoming"){
 export async function get_slides(){
     let result = await api_get(`/q/slide`)
     return result.data.Items
+}
+
+
+export async function get_single_item(type, pk){
+    let result = await api_get(`/q/${type}/i/${pk}`)
+    return result.data.Item
+}
+
+//関連項目のパース
+function parse_items (items) {
+    let _items = {}
+    items.forEach(i => {
+        const type = i.sk.replace("_item", "")
+
+        //const Model = GetModel(type)
+        //i = new Model(i)
+        
+        if (type in _items) {
+            _items[type].push(i)
+        } else {
+            _items[type] = [i]
+        }
+    })
+    return _items
+}
+
+//関連項目の取得
+export async function get_item_relation(type, pk, key=null){
+    let path = `/q/${type}/i/${pk}/rel/`
+    if(key){
+        path += `${key}/`
+    }
+    let result = await api_get(path)
+    result = result.data.Items
+    if(key){
+        return result
+    } else {
+        return parse_items(result)
+    }
+}
+
+//参照項目の取得
+export async function get_item_reference(type, pk, key=null){
+    let path = `/q/${type}/i/${pk}/ref/`
+    if(key){
+        path += `${key}/`
+    }
+    let result = await api_get(path)
+    result = result.data.Items
+    if(key){
+        return result
+    } else {
+        return parse_items(result)
+    }
 }
