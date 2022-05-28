@@ -1,7 +1,7 @@
 /* eslint-disable */
 import axios from 'axios'
 import {time_between} from "@/actions/time.js"
-import Models from '@/models/index'
+import Models, {GetModel} from '@/models/index'
 
 const ROOT_API_URL = "https://api.virtualrocketwatching.net/v0"
 
@@ -17,14 +17,16 @@ export async function get_event(mode="upcoming"){
     let datetimes = time_between(mode)
     let result = await api_get(`/q/event?datetime=${datetimes[0]}...${datetimes[1]}`)
     let items = result.data.Items
-    return items.map(item => new Models.Event(item))
+    const Model = GetModel("event")
+    return items.map(item => new Model(item))
 }
 
 export async function get_launch(mode="upcoming"){
     let datetimes = time_between(mode)
     let result = await api_get(`/q/launch?datetime=${datetimes[0]}...${datetimes[1]}`)
     let items = result.data.Items
-    return items.map(item => new Models.Launch(item))
+    const Model = GetModel("launch")
+    return items.map(item => new Model(item))
 }
 
 export async function get_meetups(mode="upcoming"){
@@ -41,7 +43,13 @@ export async function get_slides(){
 
 export async function get_single_item(type, pk){
     let result = await api_get(`/q/${type}/i/${pk}`)
-    return result.data.Item
+    let res = result.data.Item || {}
+    if (res.sk){
+        const Model = GetModel(res.sk.replace("_item", ""))
+        return new Model(res)
+    } else {
+        return {}
+    }
 }
 
 //関連項目のパース
@@ -50,8 +58,8 @@ function parse_items (items) {
     items.forEach(i => {
         const type = i.sk.replace("_item", "")
 
-        //const Model = GetModel(type)
-        //i = new Model(i)
+        const Model = GetModel(type)
+        i = new Model(i)
         
         if (type in _items) {
             _items[type].push(i)

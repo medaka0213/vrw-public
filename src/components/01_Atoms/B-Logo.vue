@@ -1,9 +1,5 @@
-<template>
-<img
-    type=”image/svg+xml” 
-    src="/logo/VRWlogo_21-09-22_JP.svg"
-    alt="VRW-Logo"
-/>
+<template lang="pug">
+img(type="image/svg+xml" src="/logo/VRWlogo_21-09-22_JP.svg" alt="VRW-Logo")
 </template>
 
 <script>

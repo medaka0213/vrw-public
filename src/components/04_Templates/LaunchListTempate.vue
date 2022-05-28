@@ -1,10 +1,7 @@
-<template>
-<DafaultLayout>
-    <LaunchListBlock :items = "state.items"  v-if="state.loaded"/>
-    <span v-else>
-        loading...
-    </span>
-</DafaultLayout>
+<template lang="pug">
+DafaultLayout
+    LaunchListBlock(:items = "state.items"  v-if="state.loaded")
+    span(v-else) loading...
 </template>
 
 <script>

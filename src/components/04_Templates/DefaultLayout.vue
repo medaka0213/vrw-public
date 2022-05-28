@@ -1,7 +1,6 @@
-<template>
-<div class="page-content mx-auto my-5 text-center">
-    <slot></slot>
-</div>
+<template lang="pug">
+.page-content.mx-auto.my-5.text-center
+    slot
 </template>
 
 <style lang="scss">

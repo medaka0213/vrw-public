@@ -1,10 +1,7 @@
-<template>
-<DafaultLayout>
-    <SlideListBlock :items = "state.items"  v-if="state.loaded"/>
-    <span v-else>
-        loading...
-    </span>
-</DafaultLayout>
+<template lang="pug">
+DafaultLayout
+    SlideListBlock(:items = "state.items"  v-if="state.loaded")
+    span(v-else) loading...
 </template>
 
 <script>

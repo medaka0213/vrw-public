@@ -1,11 +1,8 @@
-<template>
-<DafaultLayout>
-    <div v-if="state.loaded">
-        これでええやろ
-        <EventListItem v-if="state.loaded" :item = "state.item" />
-    </div>
-    <span v-else>loading...</span>
-</DafaultLayout>
+<template lang="pug">
+DafaultLayout
+    div(v-if="state.loaded")
+        EventListItem(:item = "state.item")
+    span(v-else) loading...
 </template>
 
 <script>

@@ -1,7 +1,6 @@
-<template>
-<div v-for="(item, key) in items" :key="key" class="p-text-left">
-    <SlideListItem :item="item"/>
-</div>
+<template lang="pug">
+.p-text-left(v-for="(item, key) in items" :key="key")
+    SlideListItem(:item="item")
 </template>
 
 <script>
