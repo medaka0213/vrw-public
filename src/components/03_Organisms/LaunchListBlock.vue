@@ -13,6 +13,9 @@ export default {
     },
     props: [
         "items"
-    ]
+    ],
+    onMounted(){
+        console.log(this.items)
+    }
 }
 </script>

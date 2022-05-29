@@ -1,12 +1,11 @@
-import { Launch } from "./launch";
-import { Event } from "./event";
+import { Event, Launch } from "./mission";
 
-const Models = {
+const Models:any = {
     launch: Launch,
     event: Event
 }
 
-export function GetModel(type) {
+export function GetModel(type:string) :any {
     if (type in Models) {
         return Models[type]
     } else {

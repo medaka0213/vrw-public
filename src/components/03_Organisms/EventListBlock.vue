@@ -5,14 +5,23 @@
 </template>
 
 <script>
+import { defineComponent, reactive, computed, onMounted } from 'vue'
 import EventListItem from "@/components/02_Molecules/EventListItem"
 
-export default {
+export default defineComponent({
     components: {
         EventListItem, 
     },
     props: [
         "items"
-    ]
-}
+    ],
+    setup(props){
+        onMounted(() => {
+            console.log("items", this.items)
+        })
+        return{
+            props
+        }
+    },
+})
 </script>

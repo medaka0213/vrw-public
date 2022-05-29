@@ -1,12 +1,14 @@
-import { createStore } from 'vuex'
+import Vuex, { StoreOptions } from 'vuex';
+import { RootState } from '@/store/types';
+import { item }  from './Item';
 
-export default createStore({
+const store: StoreOptions<RootState> = {
   state: {
-  },
-  mutations: {
-  },
-  actions: {
+    version: '1.0.0',
   },
   modules: {
-  }
-})
+    item,
+  },
+};
+
+export default new Vuex.Store<RootState>(store);

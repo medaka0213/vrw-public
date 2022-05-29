@@ -13,7 +13,7 @@
 
 
 <script>
-import Event from "@/models/event"
+import { Event } from '@/models/mission'
 export default {
     props: {
         item: {

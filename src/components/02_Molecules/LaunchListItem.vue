@@ -1,7 +1,8 @@
 <template lang="pug">
-.launch-item.px-3.py-1.my-1
+.launch-item.px-3.py-1.my-1.text-left
     h3
-        | {{item.get_jp_value('name')}}
+        a(v-bind:href="`/q/launch/i/${item.pk}`")
+            | {{item.get_jp_value('name')}}
     p.py-0.my-1.text-sm 
         | 🗓️ {{item.datetime_time_type === "CONFIRMED"? "日本時間" : ""}} {{ item.datetime_format_JP  }}
     p.py-0.my-1.text-sm(v-if="item.get_jp_value('rocket')")

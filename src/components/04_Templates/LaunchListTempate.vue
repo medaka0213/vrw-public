@@ -1,38 +1,43 @@
 <template lang="pug">
 DafaultLayout
-    LaunchListBlock(:items = "state.items"  v-if="state.loaded")
-    span(v-else) loading...
+  LaunchListBlock(
+    :items="store.state.item.launch",
+    v-if="store.state.item.isReceived"
+  )
+  span(v-else) loading...
 </template>
 
 <script>
-import { get_launch } from '@/actions/webapi'
-import { defineComponent, reactive, computed, onMounted } from 'vue'
+import { defineComponent, reactive, computed, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
-import LaunchListBlock from "@/components/03_Organisms/LaunchListBlock"
-import DafaultLayout from "@/components/04_Templates/DefaultLayout.vue"
+import LaunchListBlock from "@/components/03_Organisms/LaunchListBlock";
+import DafaultLayout from "@/components/04_Templates/DefaultLayout.vue";
+
+import store from "@/store";
 
 export default defineComponent({
-    name: 'App',
-    components: {
-        LaunchListBlock,
-        DafaultLayout
-    },
-    setup(){
-        const state = reactive({
-            items:[],
-            loaded: false,
-        })
-        async function getItems(){
-            state.items = await get_launch("upcoming")
-            state.loaded = true
-        }
-        onMounted(() => {
-            getItems()
-        })
-        return{
-            state,
-            getItems
-        }
-    },
-})
+  name: "App",
+  components: {
+    LaunchListBlock,
+    DafaultLayout,
+  },
+  setup() {
+    const route = useRoute();
+    async function getItems() {
+      await store.commit("item/set_received", false);
+      await store.dispatch("item/get_items", {
+        type: "launch", params: route.query
+      });
+      await store.commit("item/set_received", true);
+    }
+    onMounted(() => {
+      getItems();
+    });
+    return {
+      store,
+      getItems,
+    };
+  },
+});
 </script>
