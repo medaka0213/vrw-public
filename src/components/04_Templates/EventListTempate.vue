@@ -42,7 +42,7 @@ export default defineComponent({
       if (!Object.keys(query).length) {
         query = {
           limit: 100,
-          datetime: time_between("upcoming", 3).join("..."),
+          datetime: time_between("upcoming", 12).join("..."),
         }
         const url = `/event?${Object.keys(query).map(key => `${key}=${query[key]}`).join("&")}`
         window.location.href = url

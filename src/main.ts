@@ -14,6 +14,12 @@ import Checkbox from 'primevue/checkbox';
 import AutoComplete from 'primevue/autocomplete';
 import Dropdown from 'primevue/dropdown';
 import InputNumber from 'primevue/inputnumber';
+import Image from 'primevue/image';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import ColumnGroup from 'primevue/columngroup';     //optional for column grouping
+import Row from 'primevue/row';                     //optional for row
+import Galleria from 'primevue/galleria';
 
 import { FontAwesome } from "@/plugins/font-awesome.ts"
 
@@ -28,4 +34,10 @@ createApp(App)
     .component('AutoComplete', AutoComplete)
     .component('Dropdown', Dropdown)
     .component('InputNumber', InputNumber)
+    .component('Image', Image)
+    .component('DataTable', DataTable)
+    .component('Column', Column)
+    .component('ColumnGroup', ColumnGroup)
+    .component('Row', Row)
+    .component('Galleria', Galleria)
     .mount('#app')
