@@ -1,18 +1,17 @@
 <template>
-<select v-model="searchModeComputed">
-  <option disabled value="EQ">検索モード</option>
+<select v-model="state.mode">
   <option
     v-for="key in Object.keys(modeDict)"
     :key="key"
     :value="key"
   >{{modeDict[key]}}</option>
 </select>
-<input v-model="searchValue0Computed"/>
-<input v-model="searchValue1Computed"/>
+<input v-model="state.value0"/>
+<input v-model="state.value1"/>
 </template>
 
 <script>
-import { defineComponent, toRefs,ref, computed } from 'vue'
+import { defineComponent, toRefs,ref,watch, reactive, computed } from 'vue'
 
 const SearchValue2Params = (mode, value0, value1) => {
   console.log("SearchValue2Params", mode, value0, value1)
@@ -52,17 +51,17 @@ export default defineComponent({
   emits: ['update:queryValue'],
   setup(props, { emit }) {
     const modeDict = {
-      "EQ": "等しい",
+      "EQ": "完全一致",
       "LT": "より小さい",
       "LT_E": "以下",
       "GT": "より大きい",
       "GT_E": "以上",
-      "BEGINS": "始まる",
+      "BEGINS": "先頭一致",
       //"CONTAINS": "含む", //未実装
       "N_EQ": "等しくない",
       "BETWEEN": "範囲",
-      "EX": "指定なし",
-      "N_EX": "指定なし",
+      "EX": "値あり",
+      "N_EX": "値なし",
     }
 
     const { queryValue } = toRefs(props)
@@ -73,37 +72,22 @@ export default defineComponent({
       },
     })
 
-    const searchMode = ref("")
-    const searchValue0 = ref("")
-    const searchValue1 = ref("")
-
-    const searchModeComputed = computed({
-      get: () => searchMode.value,
-      set: (value) => {
-        searchMode.value = value
-        queryValueComputed.value = SearchValue2Params(searchModeComputed.value, searchValue0Computed.value, searchValue1Computed.value)
-      },
+    const state =  reactive({
+      mode : "EQ",
+      value0 : "",
+      value1 : "",
     })
-    const searchValue0Computed = computed({
-      get: () => searchValue0.value,
-      set: (value) => {
-        searchValue0.value = value
-        queryValueComputed.value = SearchValue2Params(searchModeComputed.value, searchValue0Computed.value, searchValue1Computed.value)
+    watch(
+      () => state,
+      (state, prevState) => {
+        console.log("watch", state, prevState)
+        queryValueComputed.value = SearchValue2Params(state.mode, state.value0, state.value1)
       },
-    })
-    const searchValue1Computed = computed({
-      get: () => searchValue1.value,
-      set: (value) => {
-        searchValue1.value = value
-        queryValueComputed.value = SearchValue2Params(searchModeComputed.value, searchValue0Computed.value, searchValue1Computed.value)
-      },
-    })
-
+      { deep: true }
+    )
 
     return {
-      searchModeComputed,
-      searchValue0Computed,
-      searchValue1Computed,
+      state,
       queryValueComputed,
       modeDict,
     }
