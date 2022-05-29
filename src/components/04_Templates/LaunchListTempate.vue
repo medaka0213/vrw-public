@@ -1,5 +1,6 @@
 <template lang="pug">
 DafaultLayout
+  SearchForm(type="launch")
   LaunchListBlock(
     :items="store.state.item.launch",
     v-if="store.state.item.isReceived"
@@ -13,14 +14,14 @@ import { useRoute, useRouter } from "vue-router";
 
 import LaunchListBlock from "@/components/03_Organisms/LaunchListBlock";
 import DafaultLayout from "@/components/04_Templates/DefaultLayout.vue";
-
+import SearchForm from "@/components/02_Molecules/SearchForm";
 import store from "@/store";
 
 export default defineComponent({
-  name: "App",
   components: {
     LaunchListBlock,
     DafaultLayout,
+    SearchForm,
   },
   setup() {
     const route = useRoute();
