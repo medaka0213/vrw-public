@@ -1,5 +1,5 @@
 <template>
-<VRWSearchInput v-model="formComputed" />
+<VRWSearchInput v-model:queryValue="titleComputed" />
 <button type="submit" v-on:click="search_items">
   Search
 </button>
@@ -14,30 +14,25 @@ export default defineComponent({
   components: {
     VRWSearchInput
   },
-  setup(props) {
-    const form = ref({
-      name: "",
-    })
-    const formComputed = computed({
-      get: () => form.value,
-      set: (value) => {
-        console.log(value)
-        form.value = value
-      },
+  setup() {
+    const title = ref('')
+    const titleComputed = computed({
+      get: () => title.value,
+      set: (value) => (title.value = value),
     })
 
     const search_items = () => {
-      console.log(form)
-      const url = `/${props.type}?rocket=${form.value.name}`
-      console.log("search_items", url);
+      console.log(title.value)
+      //const url = `/${props.type}?rocket=${form.value.name}`
+      //console.log("search_items", url);
       //window.location.href = url
     };
 
     return {
-      formComputed,
       search_items,
-    };
+      titleComputed,
     }
+  },
 });
 </script>
 
