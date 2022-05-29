@@ -1,4 +1,5 @@
 <template>
+<span>Credit: {{ item.user }} / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja" target="_blank">CC-BY-SA 4.0</a> </span>
 <Galleria :value="images">
     <template #item="slotProps">
         <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block;"/>
