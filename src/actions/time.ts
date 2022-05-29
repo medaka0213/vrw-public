@@ -1,7 +1,9 @@
+/* eslint-disable */
+
 import moment from 'moment';
 
 export function get_end_time(months: number): string{
-    let res = moment.utc();
+    const res:any = moment.utc();
     res.set({
         'month': res.month() + months,
         'date': 0,
@@ -14,8 +16,8 @@ export function get_end_time(months: number): string{
 }
 
 export function time_between(mode:string="upcoming", months:number=3): string[]{
-    let start = moment.utc().format('YYYY-MM-DDTHH:mm:ss');
-    let end = moment.utc();
+    let start:any = moment.utc().format('YYYY-MM-DDTHH:mm:ss');
+    let end:any = moment.utc();
     if (mode == "upcoming"){
         end.set({
             'month': end.month() + months,

@@ -7477,10 +7477,10 @@ primeicons@^4.1.0:
   resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-4.1.0.tgz#19eaef8ef5594b0006358ae64e738d03e167c9bb"
   integrity sha512-uEv2pSPk1zQCfaB2VgnUfnUxxlGryYi+5rbdxmZBBt5v9S/pscIQYS5YDLxsQZ7D9jn5c76+Tx5wX/2J1nK6sA==
 
-primevue@^3.5.1:
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/primevue/-/primevue-3.11.0.tgz#30516cf87f172cf90c33a351ab73f2e32c08db07"
-  integrity sha512-7xVc9Sx6lv7PAhuE9AZehEHxvXQkFEWNXJ9ztPOyObs9AuJW9/qlfadArUEwv2BBwDOtEsdXni/n4Ze+d5NCZQ==
+primevue@^3.12.6:
+  version "3.12.6"
+  resolved "https://registry.yarnpkg.com/primevue/-/primevue-3.12.6.tgz#3c5567428a9412e840d63c8b6980c5ce61905200"
+  integrity sha512-gyO1+063+JwMvcuc+F2BrIL1TWL0y3xJgLAhgKUxqMlZLLoRUF4EzOBSKnzKfr+W+33YTsh6veysZ8iQAt13xg==
 
 process-nextick-args@~2.0.0:
   version "2.0.1"

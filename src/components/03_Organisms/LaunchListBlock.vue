@@ -1,4 +1,5 @@
 <template lang="pug">
+p.my-1.text-left(v-if="items") {{items.length}}件が見つかりました
 .grid
     div(v-for="(item, key) in items" :key="key" class="text-left col-12 md:col-6 lg:col-3")
         LaunchListItem(:item="item")
@@ -13,9 +14,6 @@ export default {
     },
     props: [
         "items"
-    ],
-    onMounted(){
-        console.log(this.items)
-    }
+    ]
 }
 </script>
