@@ -5,6 +5,7 @@
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/launch">打ち上げ</router-link></li>
         <li><router-link to="/event">イベント</router-link></li>
+        <li><router-link to="/about">About</router-link></li>
         <!--
         <li><router-link to="/meetups">集会</router-link></li>
         <li><router-link to="/slides">スライド資料</router-link></li>

@@ -20,6 +20,7 @@ import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';     //optional for column grouping
 import Row from 'primevue/row';                     //optional for row
 import Galleria from 'primevue/galleria';
+import Card from 'primevue/card';
 
 import { FontAwesome } from "@/plugins/font-awesome.ts"
 
@@ -40,4 +41,5 @@ createApp(App)
     .component('ColumnGroup', ColumnGroup)
     .component('Row', Row)
     .component('Galleria', Galleria)
+    .component('Card', Card)
     .mount('#app')
