@@ -23,15 +23,20 @@ import { defineComponent, reactive  } from "vue";
 import VRWSearchInput from "@/components/01_Atoms/B-VRWSearchInput";
 import { useRoute, useRouter } from "vue-router";
 export default defineComponent({
-  props: ["type"],
+  props: [
+    "type",
+    "initialQuery"
+  ],
   components: {
     VRWSearchInput
   },
   setup(props) {
     const route = useRoute()
-    const state = reactive(route.query)
-    console.log("ChildInput", props, route.query)
-
+    let state = reactive(route.query)
+    state = {
+      ...props.initialQuery,
+      ...state
+    }
     const search_items = () => {
       console.log(state)
       let query = Object.keys(state).filter(key => state[key] || "" !== "").map(key => {

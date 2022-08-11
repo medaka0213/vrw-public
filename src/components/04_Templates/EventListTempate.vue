@@ -1,6 +1,6 @@
 <template lang="pug">
 DafaultLayout
-  MissionSearchForm(type="event")
+  MissionSearchForm(type="event" :initialQuery="query")
   EventListBlock(
     :items="store.state.item.event",
     v-if="store.state.item.isReceived"
@@ -30,7 +30,12 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     let query = route.query
-
+    if (!Object.keys(query).length) {
+      query = {
+        limit: 100,
+        datetime: time_between("upcoming", 12).join("..."),
+      }
+    }
     async function getItems() {
       await store.commit("item/set_received", false);
       await store.dispatch("item/get_items", {
@@ -39,18 +44,10 @@ export default defineComponent({
       await store.commit("item/set_received", true);
     }
     onMounted(() => {
-      if (!Object.keys(query).length) {
-        query = {
-          limit: 100,
-          datetime: time_between("upcoming", 12).join("..."),
-        }
-        const url = `/event?${Object.keys(query).map(key => `${key}=${query[key]}`).join("&")}`
-        window.location.href = url
-      } else {
-        getItems();
-      }
+      getItems();
     });
     return {
+      query,
       store,
       getItems,
     };

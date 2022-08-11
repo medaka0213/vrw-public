@@ -12,17 +12,15 @@ DafaultLayout
         p
             | 最新の打ち上げ情報については、下記のリンクをご確認ください。
         p
-            //
-                span.mr-3
-                    a(href="/meetup")
-                        | 集会一覧
-            //
             span.mr-3
                 a(href="/launch")
                     | 打ち上げ一覧
             span.mr-3
                 a(href="/event")
                     | その他イベント一覧
+            span.mr-3
+                a(href="/event")
+                    | 集会一覧
 </template>
 
 <script>

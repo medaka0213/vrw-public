@@ -24,15 +24,20 @@ export default defineComponent({
   components: {
     VRWSearchInput
   },
+  props: [
+    "initialQuery"
+  ],
   setup(props) {
     const route = useRoute()
-    const state = reactive(route.query)
-    console.log("ChildInput", props, route.query)
-
+    let state = reactive(route.query)
+    state = {
+      ...props.initialQuery,
+      ...state
+    }
     const search_items = () => {
       let query = Object.keys(state).filter(key => state[key] || "" !== "").map(key => {
         return `${key}=${state[key]}`
-      }).join("&")
+      }).join("&") 
       const url = `/meetup?${query}`
       console.log("search_items", url);
       window.location.href = url
