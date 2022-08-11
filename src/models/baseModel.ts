@@ -17,16 +17,16 @@ export class BaseModel implements BaseModelIF {
     this.unique = data.unique || ""
   }
 
-  type(): string {
+  itemType(): string {
     return this.sk.replace("_item", "")
   }
 
   itemDetailPath(): string {
-    return `/q/${this.type()}/i/${this.pk}`
+    return `/q/${this.itemType()}/i/${this.pk}`
   }
   
   itemListPath(): string {
-    return `/q/${this.type()}`
+    return `/q/${this.itemType()}`
   }
 
   notFound(): boolean {

@@ -8,7 +8,6 @@ body {
     background-color: #eee;
 }
 .page-content {
-    max-width: 1200px;
     background-color: #eee;
     text-align: left;
 }

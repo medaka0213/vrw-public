@@ -1,6 +1,6 @@
 /* eslint-disable */
-
-import moment from 'moment';
+import moment from "moment-timezone"
+import 'moment/locale/ja'
 
 export function get_end_time(months: number): string{
     const res:any = moment.utc();
@@ -39,4 +39,8 @@ export function time_between(mode:string="upcoming", months:number=3): string[]{
     });
     return [end.format('YYYY-MM-DDTHH:mm:ss'), start];
 }
+}
+
+export function format_datetime_JP(datetime:string): string{
+    return moment(datetime+"Z").tz('Asia/Tokyo').format("M/D(ddd) HH:mm");
 }

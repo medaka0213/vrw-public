@@ -9,10 +9,10 @@ DafaultLayout
             span(class="text-gray-600 text-sm" v-if="item.image_credit")
                 | Credit: {{item.image_credit}}
 
-        .border-top-2.border-400(class="text-left col-12 lg:col-6" v-if="item.type() == 'event'")
+        .border-top-2.border-400(class="text-left col-12 lg:col-6" v-if="item.itemType() == 'event'")
             //MissionTimer(:item="item")
             EventListItem(:item = "item")
-        .border-top-2.border-400(class="text-left col-12 lg:col-6" v-if="item.type() == 'launch'")
+        .border-top-2.border-400(class="text-left col-12 lg:col-6" v-if="item.itemType() == 'launch'")
             //MissionTimer(:item="item")
             LaunchListItem(:item = "item")
 
@@ -77,7 +77,7 @@ export default defineComponent({
         }
         onMounted(() => {
             getItems()
-            console.log(store.state.item)
+            console.log(store.state)
         })
         return{
             item,

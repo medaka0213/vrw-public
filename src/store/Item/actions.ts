@@ -3,6 +3,8 @@ import { ItemState, RootState } from '@/store/types';
 
 import {get_items, get_single_item, get_item_relation, get_item_reference} from '@/actions/webapi'
 
+//reduxでいうsagaと同じように使う
+
 const actions: ActionTree<ItemState, RootState> = {
   get_items: async ({ commit }, payload:any) => {
     console.log('payload', payload)

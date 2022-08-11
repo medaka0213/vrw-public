@@ -1,8 +1,9 @@
-import { Event, Launch } from "./mission";
+import { Event, Launch, Meetup } from "./mission";
 
 const Models:any = {
     launch: Launch,
-    event: Event
+    event: Event,
+    meetup: Meetup
 }
 
 export function GetModel(type:string) :any {

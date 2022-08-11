@@ -1,4 +1,5 @@
 import { BaseModel, BaseModelIF } from "./baseModel"
+import { format_datetime_JP } from "@/actions/time"
 
 export interface MissionIF extends BaseModelIF {
   NextSpaceFlight: string
@@ -115,5 +116,81 @@ export class Event extends MissionBaseModel implements MissionIF{
 
   nextSpaceFlightLink(): string {
     return `https://nextspaceflight.com/events`
+  }
+}
+
+
+export interface MeetupIF extends BaseModelIF {
+  title : string
+  title_JP : string
+  datetime : string
+  tweet: string
+  tweet_JP: string
+  type: string
+  user: string
+  missionStartsAt: string
+  isCountDonDone: boolean
+  isPosterDone: boolean
+  isSlideDone: boolean
+  isThumbDone: boolean
+  isTweetDone: boolean
+  isTwitterDone: boolean
+  isVRCEveDone: boolean
+  image_url: string
+  image_credit: string
+  calendar: string
+}
+
+export class Meetup extends BaseModel implements MeetupIF {
+  title : string
+  title_JP : string
+  datetime : string
+  tweet: string
+  tweet_JP: string
+  type: string
+  user: string
+  missionStartsAt: string
+  isCountDonDone: boolean
+  isPosterDone: boolean
+  isSlideDone: boolean
+  isThumbDone: boolean
+  isTweetDone: boolean
+  isTwitterDone: boolean
+  isVRCEveDone: boolean
+  image_url: string
+  image_credit: string
+  calendar: string
+  constructor(data:MeetupIF){
+    super(data)
+    this.title = data.title || ""
+    this.title_JP = data.title_JP || ""
+    this.datetime = data.datetime || ""
+    this.tweet = data.tweet || ""
+    this.tweet_JP = data.tweet_JP || ""
+    this.type = data.type || ""
+    this.user = data.user || ""
+    this.missionStartsAt = data.missionStartsAt || ""
+    this.isCountDonDone = data.isCountDonDone || false
+    this.isPosterDone = data.isPosterDone || false
+    this.isSlideDone = data.isSlideDone || false
+    this.isThumbDone = data.isThumbDone || false
+    this.isTweetDone = data.isTweetDone || false
+    this.isTwitterDone = data.isTwitterDone || false
+    this.isVRCEveDone = data.isVRCEveDone || false
+    this.image_url = data.image_url || ""
+    this.image_credit = data.image_credit || ""
+    this.calendar = data.calendar || ""
+  }
+
+  datetime_format(): string {
+    return format_datetime_JP(this.datetime)
+  }
+
+  twitterLink(): string {
+    return `https://twitter.com/vr_launch/status/${this.tweet}`
+  }
+  
+  twitterLinkJP(): string {
+    return `https://twitter.com/vr_launch/status/${this.get_jp_value("tweet")}`
   }
 }

@@ -1,6 +1,8 @@
 import { MutationTree } from 'vuex';
 import { ItemState } from '@/store/types';
 
+//reduxでいうactionと同じように使う
+
 const mutations: MutationTree<ItemState> = {
   set_received(state, payload: boolean) {
     state.isReceived = payload;
