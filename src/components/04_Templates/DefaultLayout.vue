@@ -5,9 +5,18 @@
             slot
         .col-xl-3.col-md-4
             .bg-white.p-4.my-3.sidebar_fixed
-                | テスト右
+                GoogleCalendar
 </template>
 
+<script>
+import GoogleCalendar from "@/components/03_Organisms/GoogleCalendar"
+
+export default {
+    components: {
+        GoogleCalendar
+    }
+}
+</script>
 
 <style lang="scss">
 body { 

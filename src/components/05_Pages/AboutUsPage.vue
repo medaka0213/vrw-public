@@ -1,11 +1,13 @@
 <template lang="pug">
 DafaultLayout
-    .text-left.bg-white.p-3
+    .bg-white.p-3.my-3
         h2 「ロケット打ち上げを観る集会」について
         p
             | VRChatでロケットの打ち上げ生中継・アーカイブ動画を同時視聴する、パブリックビューイングイベントを行っています。
             br
             | 実物大の3Dモデルや教材を用いて、最新の宇宙開発事情をお届けします。
+
+    .bg-white.my-3.p-3
         h3 各種リンク
 
         p
@@ -23,6 +25,7 @@ DafaultLayout
             a(href="https://t.co/nL12021X0s" target="_blank")
                 |Google Calendar
 
+    .bg-white.my-3.p-3
         h3 ご連絡先
         p
             | ご意見・ご要望等ございましたら、下記のGoogle Form までお問い合わせください。
