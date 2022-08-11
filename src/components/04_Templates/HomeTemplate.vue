@@ -1,8 +1,8 @@
 <template lang="pug">
 DafaultLayout
-    .p-5.my-5.page-item
+    .p-4.my-3.page-item
         VRWLogo
-    .p-5.my-5.page-item.text-left
+    .p-4.my-3.page-item.text-left
         h2
             |「ロケット打ち上げを観る集会」について
         p

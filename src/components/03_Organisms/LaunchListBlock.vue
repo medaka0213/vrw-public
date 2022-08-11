@@ -1,7 +1,7 @@
 <template lang="pug">
 p.my-1.text-left(v-if="items") {{items.length}}件が見つかりました
-.grid
-    div(v-for="(item, key) in items" :key="key" class="text-left col-12 md:col-6 lg:col-3")
+.row
+    .text-left.col-xl-4.col-lg-6.my-2(v-for="(item, key) in items" :key="key")
         LaunchListItem(:item="item")
 </template>
 

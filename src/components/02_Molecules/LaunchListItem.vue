@@ -1,6 +1,6 @@
 <template lang="pug">
-.launch-item.px-3.py-1.my-1.text-left
-    h3
+.launch-item.p-3.my-1.text-left
+    h5
         a(v-bind:href="`/q/launch/i/${item.pk}`")
             | {{item.get_jp_value('name')}}
     p.py-0.my-1.text-sm 

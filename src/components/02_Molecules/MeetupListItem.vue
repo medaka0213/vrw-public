@@ -1,8 +1,12 @@
 <template lang="pug">
-.launch-item.px-3.py-1.my-1.text-left
-    h3
+.launch-item.p-3.my-1.text-left
+    h5
         a(v-bind:href="`/q/meetup/i/${item.pk}`")
             | {{item.get_jp_value('title')}}
+    p.py-0.my-1.text-sm(v-if="item.type==='live'")
+        | 生中継の部
+    p.py-0.my-1.text-sm(v-if="item.type==='archive'")
+        | アーカイブの部
     p.py-0.my-1.text-sm 
         | 🗓️ 日本時間 {{ item.datetime_format()  }}
     p.py-0.my-1.text-sm
