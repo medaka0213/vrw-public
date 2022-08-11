@@ -18,28 +18,27 @@
   </div>
 </template>
 
-<style scoped lang="scss">
-#app {
-  header{
-    background : #004F8A;
-      ul{
-        margin: 0;
-        padding: 0;
-        display: flex;
-        list-style: none;
-          li{
-            margin: 10px;
-              a{
-                color: #fff;
-              }
-          }
-      }
-  }
-  .v-enter-active, .v-leave-active {
-    transition: opacity .5s;
-  }
-  .v-enter, .v-leave-to {
-    opacity: 0;
-  }
+<style>
+header{
+  background : #004F8A;
+}
+.v-enter-active, .v-leave-active {
+  transition: opacity .5s;
+}
+.v-enter, .v-leave-to {
+  opacity: 0;
+}
+ul{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+}
+ul li{
+  margin: 10px;
+}
+
+ul a{
+  color: #fff;
 }
 </style>

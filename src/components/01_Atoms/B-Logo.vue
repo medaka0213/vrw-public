@@ -13,7 +13,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 img {
     display: block;
     max-width: 100%;

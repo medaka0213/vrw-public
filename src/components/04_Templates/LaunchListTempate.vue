@@ -36,6 +36,7 @@ export default defineComponent({
       await store.commit("item/set_received", true);
     }
     onMounted(() => {
+      console.log(query)
       if (!Object.keys(query).length) {
         query = {
           limit: 100,
