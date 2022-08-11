@@ -30,7 +30,6 @@ export default defineComponent({
     console.log("ChildInput", props, route.query)
 
     const search_items = () => {
-      console.log(state)
       let query = Object.keys(state).filter(key => state[key] || "" !== "").map(key => {
         return `${key}=${state[key]}`
       }).join("&")

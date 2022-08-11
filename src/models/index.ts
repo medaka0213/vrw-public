@@ -1,9 +1,10 @@
-import { Event, Launch, Meetup } from "./mission";
+import { Event, Launch, Meetup, Image } from "./mission";
 
 const Models:any = {
     launch: Launch,
     event: Event,
-    meetup: Meetup
+    meetup: Meetup,
+    image: Image
 }
 
 export function GetModel(type:string) :any {

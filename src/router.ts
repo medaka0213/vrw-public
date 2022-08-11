@@ -27,6 +27,11 @@ const routes = [
         component: () => import("@/components/05_Pages/MeetupListPage.vue")
     },
     {
+        path: '/q/meetup/i/:pk',
+        name: 'MeeutpDetail',
+        component: () => import("@/components/05_Pages/MeetupDetailPage.vue")
+    },
+    {
         path: '/q/:type/i/:pk',
         name: 'EventDetail',
         component: () => import("@/components/05_Pages/ItemDetailPage.vue")

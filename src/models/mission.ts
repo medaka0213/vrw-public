@@ -108,7 +108,6 @@ export class Launch extends MissionBaseModel implements LaunchIF{
 }
 
 
-
 export class Event extends MissionBaseModel implements MissionIF{
   constructor(data:MissionIF) {
     super(data)
@@ -192,5 +191,39 @@ export class Meetup extends BaseModel implements MeetupIF {
   
   twitterLinkJP(): string {
     return `https://twitter.com/vr_launch/status/${this.get_jp_value("tweet")}`
+  }
+}
+
+export interface ImageIF extends BaseModelIF {
+  mime : string
+  credit : string
+  url: string
+  name: string
+}
+
+
+export class Image extends BaseModel implements ImageIF {
+  mime : string
+  credit : string
+  url: string
+  name: string
+  constructor(data:Image){
+    super(data)
+    this.mime = data.mime || ""
+    this.credit = data.credit || ""
+    this.url = data.url || ""
+    this.name = data.name || ""
+  }
+
+  extention(): string {
+    if (this.mime.indexOf("/") !== 0) {
+      return this.mime.split("/")[1]
+    } else {
+      return this.mime
+    }
+  }
+
+  src(): string {
+    return `https://img.virtualrocketwatching.net/image/${this.pk}.${this.extention()}`
   }
 }
