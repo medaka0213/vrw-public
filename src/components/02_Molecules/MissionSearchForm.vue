@@ -9,7 +9,9 @@
   .my-3
     VRWSearchInput(v-model:queryValue="state.site" title="発射場")
   .my-3
-    VRWSearchInput(v-model:queryValue="state.datetime" title="時刻 (YYYY-MM-DD HH:MM:SS)" :stringKey="true")
+    VRWSearchInput(v-model:queryValue="state.datetime" 
+      title="時刻 (YYYY-MM-DD HH:MM:SS)"  :stringKey="true" :isDateTime="true"
+    )
   .my-3
     label.mr-2(for="search-limit") 検索数の上限
     InputNumber(id="search-limit" v-model="state.limit")
@@ -38,7 +40,6 @@ export default defineComponent({
       ...state
     }
     const search_items = () => {
-      console.log(state)
       let query = Object.keys(state).filter(key => state[key] || "" !== "").map(key => {
         return `${key}=${state[key]}`
       }).join("&")

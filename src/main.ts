@@ -10,6 +10,7 @@ import "primevue/resources/primevue.min.css"
 import PrimeVue from 'primevue/config';
 import Button from 'primevue/button';
 import Checkbox from 'primevue/checkbox';
+import Calendar from 'primevue/calendar';
 import AutoComplete from 'primevue/autocomplete';
 import Dropdown from 'primevue/dropdown';
 import InputNumber from 'primevue/inputnumber';
@@ -31,6 +32,7 @@ createApp(App)
     .component("fa", FontAwesome)
     .component('Button', Button)
     .component('Checkbox', Checkbox)
+    .component('Calendar', Calendar)
     .component('AutoComplete', AutoComplete)
     .component('Dropdown', Dropdown)
     .component('InputNumber', InputNumber)

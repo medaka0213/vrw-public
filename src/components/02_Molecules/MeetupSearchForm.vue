@@ -5,7 +5,10 @@
   .my-3
     VRWSearchInput(v-model:queryValue="state.type" title="集会タイプ (live / archive)" :stringKey="true")
   .my-3
-    VRWSearchInput(v-model:queryValue="state.datetime" title="開場時刻 (YYYY-MM-DD HH:MM:SS)" :stringKey="true")
+    VRWSearchInput(
+        v-model:queryValue="state.datetime" title="開場時刻 (YYYY-MM-DD HH:MM:SS)" 
+        :stringKey="true", :isDateTime="true"
+      )
   .my-3
     VRWSearchInput(v-model:queryValue="state.user" title="JOIN先" :stringKey="true")
   .my-3
