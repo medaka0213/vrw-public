@@ -19,6 +19,10 @@ export interface MissionIF extends BaseModelIF {
 
   image_url: string
   image_credit: string
+
+  watch_URL: string
+  watch_URL_short: string
+  watch_URL_liftoff_at: number
 }
 
 export class MissionBaseModel extends BaseModel implements MissionIF {
@@ -40,6 +44,10 @@ export class MissionBaseModel extends BaseModel implements MissionIF {
   image_url: string
   image_credit: string
 
+  watch_URL: string
+  watch_URL_short: string
+  watch_URL_liftoff_at: number
+
   constructor(data:MissionIF){
     super(data)
     this.NextSpaceFlight = data.NextSpaceFlight || ""
@@ -57,6 +65,28 @@ export class MissionBaseModel extends BaseModel implements MissionIF {
     this.description_JP = data.description_JP || ""
     this.image_url = data.image_url || ""
     this.image_credit = data.image_credit || ""
+    this.watch_URL = data.watch_URL || ""
+    this.watch_URL_short = data.watch_URL_short || ""
+    this.watch_URL_liftoff_at = data.watch_URL_liftoff_at || 0
+  }
+
+  _extract_yt_id(url:string): string {
+    console.log(url)
+    if (url.includes("youtube.com")){
+      return url.split("v=")[1]
+    }else if (url.includes("youtu.be")){
+      return url.split("/")[3]
+    }else {
+      return ""
+    }
+  }
+
+  youtubeId(): string {
+    return this._extract_yt_id(this.watch_URL)
+  }
+
+  youtubeShortId(): string {
+    return this._extract_yt_id(this.watch_URL_short)
   }
 }
 

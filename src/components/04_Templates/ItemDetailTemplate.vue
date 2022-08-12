@@ -9,12 +9,20 @@ DafaultLayout
             span(class="text-gray-600 text-sm" v-if="item.image_credit")
                 | Credit: {{item.image_credit}}
 
-        .text-left(class="col-12 lg:col-6" v-if="item.itemType() == 'event'")
-            //MissionTimer(:item="item")
-            EventListItem(:item = "item")
-        .text-left(class="col-12 lg:col-6" v-if="item.itemType() == 'launch'")
-            //MissionTimer(:item="item")
-            LaunchListItem(:item = "item")
+        .text-left(class="col-12 lg:col-6")
+            EventListItem(:item = "item" v-if="item.itemType() == 'event'")
+            LaunchListItem(:item = "item" v-if="item.itemType() == 'launch'")
+            .pl-4(v-if="store.state.item['meetup']" || [] !==[])
+                Button( @click="handleClick($event)" label="Secondary" class="p-button-outlined")
+                    | 集会情報
+
+        .border-top-2.border-400.py-5(class="text-left col-12 xl:col-12" v-if="item.youtubeId() !== ''")
+            h4 動画
+            YouTubeBlock(:videoId="item.youtubeId()" width="100%" :start="item.watch_URL_liftoff_at")
+
+        .border-top-2.border-400.py-5(class="text-left col-12 xl:col-12" v-if="item.youtubeShortId() !== ''")
+            h4 動画 (切り抜き)
+            YouTubeBlock(:videoId="item.youtubeShortId()" width="100%")
 
         .border-top-2.border-400.py-5(class="text-left col-12" v-if="store.state.item['slide']" || [] !==[])
             h4 スライド資料
@@ -39,6 +47,7 @@ import DafaultLayout from "@/components/04_Templates/DefaultLayout.vue"
 import SlideItemBlock from "@/components/03_Organisms/SlideItemBlock"
 import CountdownBlock from "@/components/03_Organisms/CountdownBlock"
 import MissionTimer from "@/components/02_Molecules/MissionTimer"
+import YouTubeBlock from "@/components/02_Molecules/B-Youtube"
 
 import store from '@/store'
 
@@ -52,7 +61,8 @@ export default defineComponent({
         SlideItemBlock,
         CountdownBlock,
         MissionTimer,
-        DafaultLayout
+        DafaultLayout,
+        YouTubeBlock
     },
     setup(props){
         const item = computed(() => {
@@ -75,6 +85,11 @@ export default defineComponent({
             await store.dispatch('item/get_item_reference', props)
             await store.commit('item/set_received', true)
         }
+        const handleClick = (e) => {
+            const meetup = store.state.item['meetup'][0]
+            const href = `/q/meetup/i/${meetup.pk}`
+            window.location.href = href
+        }
         onMounted(() => {
             getItems()
             console.log(store.state)
@@ -83,7 +98,8 @@ export default defineComponent({
             item,
             store,
             state,
-            getItems
+            getItems,
+            handleClick
         }
     },
 })
