@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import GoogleCalendar from "@/components/03_Organisms/GoogleCalendar"
+import GoogleCalendar from "@/components/02_Molecules/B-GoogleCalendar"
 
 export default {
     components: {
