@@ -1,8 +1,5 @@
 <template lang="pug">
-.launch-item.p-3.my-1.text-left
-    h5
-        a(v-bind:href="`/q/meetup/i/${item.pk}`")
-            | {{item.get_jp_value('title')}}
+.text-left
     p.py-0.my-1.text-sm(v-if="item.type==='live'")
         | 生中継の部
     p.py-0.my-1.text-sm(v-if="item.type==='archive'")
@@ -24,9 +21,3 @@ export default defineComponent({
     props: ["item"]
 })
 </script>
-
-<style scoped>
-.launch-item {
-    background-color: #fff
-}
-</style>

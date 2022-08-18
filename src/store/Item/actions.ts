@@ -1,7 +1,7 @@
 import { ActionTree } from 'vuex';
 import { ItemState, RootState } from '@/store/types';
 
-import {get_items, get_single_item, get_item_relation, get_item_reference} from '@/actions/webapi'
+import {get_items, get_missions, get_single_item, get_item_relation, get_item_reference} from '@/actions/webapi'
 
 //reduxでいうsagaと同じように使う
 
@@ -14,6 +14,16 @@ const actions: ActionTree<ItemState, RootState> = {
         type: key,
         Items: result[key as keyof typeof result]
       })
+    })
+  },
+
+  get_missions: async ({ commit }, payload:any) => {
+    console.log('payload', payload)
+    const result: any[] = await get_missions(payload.params)
+
+    commit('get_items', {
+      type: "mission",
+      Items: result
     })
   },
 

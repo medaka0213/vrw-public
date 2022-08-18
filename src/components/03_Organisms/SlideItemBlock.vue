@@ -1,10 +1,14 @@
-<template>
-<span>Credit: {{ item.user }} / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja" target="_blank">CC-BY-SA 4.0</a> </span>
-<Galleria :value="images">
-    <template #item="slotProps">
-        <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block;"/>
-    </template>
-</Galleria>
+<template lang="pug">
+span
+  | Credit: {{ item.user }} / 
+  a(href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja" target="_blank")
+    | CC-BY-SA 4.0
+.bg-blue.bg-secondary.border
+  Galleria(:value="images" class="border" :numVisible="10")
+      template(#item="slotProps")
+          img(:src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block;")
+      template(#thumbnail="slotProps")
+          img(:src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 90%; display: block;")
 </template>
 
 <script>
@@ -29,3 +33,9 @@ export default defineComponent({
   },
 })
 </script>
+
+<style>
+.p-galleria .p-galleria-thumbnail-container {
+  background : none;
+}
+</style>

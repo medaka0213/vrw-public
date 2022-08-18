@@ -1,3 +1,4 @@
+import moment from "moment-timezone"
 import { BaseModel, BaseModelIF } from "./baseModel"
 import { format_datetime_JP } from "@/actions/time"
 
@@ -88,6 +89,18 @@ export class MissionBaseModel extends BaseModel implements MissionIF {
   youtubeShortId(): string {
     return this._extract_yt_id(this.watch_URL_short)
   }
+
+  datetime_format_sort(): string {
+    const dt = moment(this.datetime+"Z")
+    if (this.datetime_time_type == "CONFIRMED"){
+      return dt.format("YYYY-MM-DD HH:mm")
+    }
+    else if (this.datetime_date_type == "CONFIRMED"){
+      return dt.format("YYYY-MM-DD [XX:XX]")
+    } else {
+      return dt.format("YYYY-MM-[XX XX:XX]")
+    }
+  }
 }
 
 export interface LaunchIF extends MissionIF {
@@ -135,6 +148,10 @@ export class Launch extends MissionBaseModel implements LaunchIF{
   nextSpaceFlightLink(): string {
     return `https://nextspaceflight.com/launches/details/${this.NextSpaceFlight.replace("a","")}`
   }
+
+  title(): string {
+    return `${this.get_jp_value("rocket")} | ${this.get_jp_value("name")}`
+  }
 }
 
 
@@ -145,6 +162,10 @@ export class Event extends MissionBaseModel implements MissionIF{
 
   nextSpaceFlightLink(): string {
     return `https://nextspaceflight.com/events`
+  }
+
+  title(): string {
+    return `${this.get_jp_value("name")}`
   }
 }
 

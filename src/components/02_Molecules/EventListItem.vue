@@ -1,8 +1,5 @@
 <template lang="pug">
-.launch-item.p-3.my-1.text-left
-    h5
-        a(v-bind:href="`/q/event/i/${item.pk}`")
-            | {{item.get_jp_value('name')}}
+.text-left
     p.py-0.my-1.text-sm
         | 🗓️ {{item.datetime_time_type === "CONFIRMED"? "日本時間" : ""}} {{ item.datetime_format_JP || item.date_JP  }}
     p.py-0.my-1.text-xs
@@ -23,10 +20,3 @@ export default {
     }
 }
 </script>
-
-
-<style scoped>
-.launch-item {
-    background-color: #fff
-}
-</style>

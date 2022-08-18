@@ -1,7 +1,8 @@
 <template lang="pug">
 DafaultLayout
+  h1.pl-3 その他イベント検索
   MissionSearchForm(type="event" :initialQuery="query")
-  EventListBlock(
+  MissionListBlock(
     :items="store.state.item.event",
     v-if="store.state.item.isReceived"
   )
@@ -12,7 +13,7 @@ DafaultLayout
 import { defineComponent, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import EventListBlock from "@/components/03_Organisms/EventListBlock";
+import MissionListBlock from "@/components/03_Organisms/MissionListBlock";
 import DafaultLayout from "@/components/04_Templates/DefaultLayout.vue";
 import MissionSearchForm from "@/components/02_Molecules/MissionSearchForm";
 
@@ -23,7 +24,7 @@ import store from "@/store";
 export default defineComponent({
   name: "App",
   components: {
-    EventListBlock,
+    MissionListBlock,
     DafaultLayout,
     MissionSearchForm
   },

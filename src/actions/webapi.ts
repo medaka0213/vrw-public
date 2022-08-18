@@ -19,6 +19,19 @@ export async function get_items(type:string, params:any={}): Promise<any> {
     return parse_items(result.data.Items)
 }
 
+export async function get_missions(params:any={}): Promise<any> {
+    let path:string = `/q/mission?${Object.keys(params).map(key => `${key}=${params[key]}`).join("&")}`
+    let result:any = await api_get(path)
+    result = parse_items(result.data.Items)
+    
+    let items = result.launch || [];
+    items = items.concat(result.event || []);
+    items.sort((a:any, b:any) => {
+        return a.datetime_format_sort() < b.datetime_format_sort() ? -1 : 1;
+    });
+    return items
+}
+
 export async function get_single_item(type:string, pk:string): Promise<any> {
     let result = await api_get(`/q/${type}/i/${pk}`)
     let res = result.data.Item || {}
@@ -32,6 +45,7 @@ export async function get_single_item(type:string, pk:string): Promise<any> {
 
 //関連項目のパース
 function parse_items (items: any[]) :any {
+    console.log("parse_items", items)
     let _items:any = {}
     items.forEach(i => {
         const type = i.sk.replace("_item", "")

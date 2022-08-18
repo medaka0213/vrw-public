@@ -1,37 +1,49 @@
 <template lang="pug">
 DafaultLayout
-    .grid.bg-white.p-4.my-3(v-if="store.state.item.isReceived")
-        .text-left(class="col-12 lg:col-6")
-            img(
+    .text-left.grid.bg-white.p-4.my-3(v-if="store.state.item.isReceived")
+        .mb-3(class="col-12")
+            h1.pl-3.text-primary
+                | {{item.title()}}
+
+        .mb-3(class="col-12 lg:col-6")
+            img.border(
                 v-bind:src="item.image_url || item.rocket_image_url || 'https://img.virtualrocketwatching.net/VRWlogo_21-02-14_JP.png'"
                 alt="Image" max-width="100%" preview
             )
             span(class="text-gray-600 text-sm" v-if="item.image_credit")
                 | Credit: {{item.image_credit}}
 
-        .text-left(class="col-12 lg:col-6")
-            EventListItem(:item = "item" v-if="item.itemType() == 'event'")
-            LaunchListItem(:item = "item" v-if="item.itemType() == 'launch'")
-            .pl-4(v-if="store.state.item['meetup']" || [] !==[])
-                Button( @click="handleClick($event)" label="Secondary" class="p-button-outlined")
-                    | 集会情報
+        .mb-3(class="col-12 lg:col-6")
+            .pl-1
+                .p-3.mb-3.border.bg-light(v-if="item.datetime_time_type === 'CONFIRMED'")
+                    h4 カウントダウン
+                    h5
+                        CountDownClock(:datetime = "item.datetime")
+                .p-3.mb-3.border.bg-light
+                    EventListItem(:item = "item" v-if="item.itemType() == 'event'")
+                    LaunchListItem(:item = "item" v-if="item.itemType() == 'launch'")
 
-        .border-top-2.border-400.py-5(class="text-left col-12 xl:col-12" v-if="item.youtubeId() !== ''")
+                .p-3.mb-3.border.bg-light(v-if="store.state.item['meetup']" || [] !==[])
+                    p.mb-0
+                        a(:href= "store.state.item['meetup'][0].itemDetailPath()" )
+                            | 集会情報
+
+        .mb-3.border-top-2.border-400.py-5(class="text-left col-12 xl:col-12" v-if="item.youtubeId() !== ''")
             h4 動画
             YouTubeBlock(:videoId="item.youtubeId()" width="100%" :start="item.watch_URL_liftoff_at")
 
-        .border-top-2.border-400.py-5(class="text-left col-12 xl:col-12" v-if="item.youtubeShortId() !== ''")
+        .mb-3.border-top-2.border-400.py-5(class="text-left col-12 xl:col-12" v-if="item.youtubeShortId() !== ''")
             h4 動画 (切り抜き)
             YouTubeBlock(:videoId="item.youtubeShortId()" width="100%")
 
-        .border-top-2.border-400.py-5(class="text-left col-12" v-if="store.state.item['slide']" || [] !==[])
+        .mb-3.border-top-2.border-400.py-5(class="text-left col-12" v-if="store.state.item['slide']" || [] !==[])
             h4 スライド資料
             SlideItemBlock(:item = "store.state.item['slide'][0]" style="max-width: 800px")
 
-        .border-top-2.border-400.py-5(class="text-left col-12 lg:col-6" v-if="store.state.item['countdown']" || [] !==[])
+        .mb-3.border-top-2.border-400.py-5(class="text-left col-12 lg:col-6" v-if="store.state.item['countdown']" || [] !==[])
             h4 カウントダウン タイムライン
             CountdownBlock(:item = "store.state.item['countdown'][0]" mode="t-minus")
-        .border-top-2.border-400.py-5(class="text-left col-12 lg:col-6" v-if="store.state.item['countdown']" || [] !==[])
+        .mb-3.border-top-2.border-400.py-5(class="text-left col-12 lg:col-6" v-if="store.state.item['countdown']" || [] !==[])
             h4 飛行中タイムライン
             CountdownBlock(:item = "store.state.item['countdown'][0]" mode="t-plus")
     span(v-else) 
@@ -48,9 +60,9 @@ import SlideItemBlock from "@/components/03_Organisms/SlideItemBlock"
 import CountdownBlock from "@/components/03_Organisms/CountdownBlock"
 import MissionTimer from "@/components/02_Molecules/MissionTimer"
 import YouTubeBlock from "@/components/02_Molecules/B-Youtube"
+import CountDownClock from "@/components/01_Atoms/B-CountDownClock"
 
 import store from '@/store'
-
 
 export default defineComponent({
     name: 'App',
@@ -62,7 +74,8 @@ export default defineComponent({
         CountdownBlock,
         MissionTimer,
         DafaultLayout,
-        YouTubeBlock
+        YouTubeBlock,
+        CountDownClock
     },
     setup(props){
         const item = computed(() => {
@@ -85,11 +98,6 @@ export default defineComponent({
             await store.dispatch('item/get_item_reference', props)
             await store.commit('item/set_received', true)
         }
-        const handleClick = (e) => {
-            const meetup = store.state.item['meetup'][0]
-            const href = `/q/meetup/i/${meetup.pk}`
-            window.location.href = href
-        }
         onMounted(() => {
             getItems()
             console.log(store.state)
@@ -98,8 +106,7 @@ export default defineComponent({
             item,
             store,
             state,
-            getItems,
-            handleClick
+            getItems
         }
     },
 })

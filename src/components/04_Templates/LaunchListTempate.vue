@@ -1,7 +1,8 @@
 <template lang="pug">
 DafaultLayout
+  h1.pl-3 打ち上げ検索
   MissionSearchForm(type="launch", :initialQuery="query")
-  LaunchListBlock(
+  MissionListBlock(
     :items="store.state.item.launch",
     v-if="store.state.item.isReceived"
   )
@@ -12,7 +13,7 @@ DafaultLayout
 import { defineComponent, reactive, computed, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import LaunchListBlock from "@/components/03_Organisms/LaunchListBlock";
+import MissionListBlock from "@/components/03_Organisms/MissionListBlock";
 import DafaultLayout from "@/components/04_Templates/DefaultLayout.vue";
 import MissionSearchForm from "@/components/02_Molecules/MissionSearchForm";
 import store from "@/store";
@@ -20,7 +21,7 @@ import { time_between}  from "@/actions/time";
 
 export default defineComponent({
   components: {
-    LaunchListBlock,
+    MissionListBlock,
     DafaultLayout,
     MissionSearchForm,
   },

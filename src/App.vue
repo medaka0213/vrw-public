@@ -3,10 +3,9 @@
     <header>
       <ul>
         <li><router-link to="/">ホーム</router-link></li>
-        <li><router-link to="/launch">打ち上げ</router-link></li>
-        <li><router-link to="/event">その他イベント</router-link></li>
+        <li><router-link to="/mission">ミッション</router-link></li>
         <li><router-link to="/meetup">集会</router-link></li>
-        <li><router-link to="/about">「ロケみる集会」について</router-link></li>
+        <li><router-link to="/about">About</router-link></li>
         <!--
         <li><router-link to="/slides">スライド資料</router-link></li>
         -->

@@ -1,6 +1,6 @@
 <template lang="pug">
 .page-content.mx-auto.my-5.text-center
-    .row.text-left
+    .row.text-left.p-0
         .col-xl-9.col-md-8.col-sm-12
             slot
         .col-xl-3.col-md-4

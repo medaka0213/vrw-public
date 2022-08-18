@@ -12,6 +12,11 @@ const routes = [
         component: () => import("@/components/05_Pages/AboutUsPage.vue")
     },
     {
+        path: '/mission',
+        name: 'MissionList',
+        component: () => import("@/components/05_Pages/MissionListPage.vue")
+    },
+    {
         path: '/event',
         name: 'EventList',
         component: () => import("@/components/05_Pages/EventListPage.vue")
@@ -33,8 +38,8 @@ const routes = [
     },
     {
         path: '/q/:type/i/:pk',
-        name: 'EventDetail',
-        component: () => import("@/components/05_Pages/ItemDetailPage.vue")
+        name: 'MissionDetail',
+        component: () => import("@/components/05_Pages/MissionDetailPage.vue")
     }
 ]
 

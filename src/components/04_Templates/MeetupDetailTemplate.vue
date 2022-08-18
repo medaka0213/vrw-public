@@ -1,6 +1,9 @@
 <template lang="pug">
 DafaultLayout
     .grid.bg-white.p-4.my-3(v-if="store.state.item.isReceived")
+        .text-left(class="col-12")
+            h1.text-primary
+                | {{item.get_jp_value("title")}}
         .text-left(class="col-12 lg:col-6")
             img(
                 v-bind:src="posterUrl || 'https://img.virtualrocketwatching.net/VRWlogo_21-02-14_JP.png'"
@@ -9,10 +12,13 @@ DafaultLayout
             span(class="text-gray-600 text-sm" v-if="item.image_credit && !posterUrl")
                 | Credit: {{item.image_credit}}
         .text-left(class="col-12 lg:col-6" v-if="item.pk")
-            MeetupListItem(:item = "item")
-            .pl-4
-                Button( @click="handleClick($event)" label="Primary" class="p-button-outlined")
-                    | ミッション詳細へ
+            .p-3.mb-3.border.bg-light
+                MeetupListItem(:item = "item")
+            .p-3.mb-3.border.bg-light
+                p.mb-0
+                    a(:href= "msision.itemDetailPath()" )
+                        | ミッション詳細
+
     span(v-else) 
         | loading...
 </template>
@@ -57,7 +63,7 @@ export default defineComponent({
             }
             return item.value.image_url
         })
-        const mission = computed(() => {
+        const msision = computed(() => {
             if (store.state.item.isReceived){
                 if (store.state.item["event"]){
                     return store.state.item["event"][0]
@@ -67,10 +73,6 @@ export default defineComponent({
             } 
             return {}
         })
-        const handleClick = (e) => {
-            const href = `/q/${mission.value.itemType()}/i/${mission.value.pk}`
-            window.location.href = href
-        }
         const state = reactive({
             item:{},
             relations: {},
@@ -93,9 +95,9 @@ export default defineComponent({
             getItems()
         })
         return{
+            msision,
             item,
             posterUrl,
-            handleClick,
             store,
             state,
             getItems,
