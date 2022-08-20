@@ -31,7 +31,7 @@ export default defineComponent({
     if (!Object.keys(query).length) {
       query = {
         limit: 100,
-        datetime: time_between("upcoming", 12).join("..."),
+        datetime: time_between("upcoming", 2).join("..."),
       }
     }
     async function getItems() {
