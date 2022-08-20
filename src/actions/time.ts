@@ -59,9 +59,9 @@ export function format_countdown(datetime:string): string{
     let years = Math.abs(duration.years())
     let months = Math.abs(duration.months())
     let days = Math.abs(duration.days())
-    let hours = zeroPadding(duration.hours(), 2)
-    let minutes = zeroPadding(duration.minutes(), 2)
-    let seconds = zeroPadding(duration.seconds(), 2)
+    let hours = zeroPadding(Math.abs(duration.hours()), 2)
+    let minutes = zeroPadding(Math.abs(duration.minutes()), 2)
+    let seconds = zeroPadding(Math.abs(duration.seconds()), 2)
 
     if (duration.asMilliseconds() < 0){
         res = "T+ "

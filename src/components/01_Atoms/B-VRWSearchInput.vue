@@ -21,6 +21,7 @@
 <script>
 import { defineComponent, toRefs, watch, reactive, computed, onMounted } from 'vue'
 import { searchValue2Params, param2SearchValue, modeDict } from '@/actions/vrwSearch'
+import moment from 'moment-timezone'
 
 export default defineComponent({
   name: 'ChildInput',
@@ -43,6 +44,10 @@ export default defineComponent({
     const state =  reactive(param2SearchValue(queryValueComputed.value, props.stringKey))
     watch(() => state,
       (state, prevState) => {
+        if (props.isDateTime) {
+          state.value0 = moment(state.value0).format('YYYY-MM-DDTHH:mm:ss')
+          state.value1 = moment(state.value1).format('YYYY-MM-DDTHH:mm:ss')
+        }
         if (state.enable){
           queryValueComputed.value = searchValue2Params(state.mode, state.value0, state.value1, props.stringKey)
         } else {

@@ -77,18 +77,18 @@ export const param2SearchValue = (param: string, stringKey: string): any => {
             value0: param.slice(2)
         }
     }
-    else if (param.startsWith("...")) {
+    else if (param.endsWith("...")) {
         res = {
             enable: true,
             mode: "GT_E",
-            value0: param.slice(3)
+            value0: param.slice(0, -3)
         }
     }
-    else if (param.startsWith("..")) {
+    else if (param.endsWith("..")) {
         res = {
             enable: true,
             mode: "GT",
-            value0: param.slice(2)
+            value0: param.slice(0, -2)
         }
     }
     else if (param.startsWith("--")) {
