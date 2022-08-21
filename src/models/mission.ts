@@ -72,7 +72,6 @@ export class MissionBaseModel extends BaseModel implements MissionIF {
   }
 
   _extract_yt_id(url:string): string {
-    console.log(url)
     if (url.includes("youtube.com")){
       return url.split("v=")[1].split("&")[0]
     }else if (url.includes("youtu.be")){
